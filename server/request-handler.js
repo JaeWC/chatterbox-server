@@ -42,23 +42,19 @@ var requestHandler = function(request, response) {
           response.writeHead(404);
           response.end();
         } else {
+          data = data.slice(0, -1)
           data = JSON.parse("[" + data + "]");
           response.writeHead(200, headers);
           response.end(JSON.stringify({results: data}));
         }
       })
-
-      // response.writeHead(200, headers);
-      // response.end(JSON.stringify(body));
     } else if (request.method === 'POST') {
-      // var jsonData = "";
       request.on('data', function(message) {
-        // jsonData += message.toString()
-        // body.results.push(JSON.parse(jsonData))
-        // response.writeHead(201, headers);
-
         message = JSON.parse(message)
-        fs.appendFile('./server/textfile.txt', ',' + JSON.stringify(message), 'utf-8', function(err) {
+        fs.appendFile('./server/textfile.txt', 
+                      JSON.stringify(message) + ',', 
+                      'utf-8', 
+                      function(err) {
           if (err) {
             response.writeHead(404);
           } else {
@@ -119,7 +115,4 @@ var defaultCorsHeaders = {
   'access-control-max-age': 10 // Seconds.
 };
 
-// const body = {};
-// body.results = [];
-
-module.exports.requestHandler = requestHandler;
+module.exports = requestHandler;
