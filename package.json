@@ -9,11 +9,16 @@
   },
   "scripts": {
     "start": "node server/basic-server.js",
-    "test": "mocha server/spec"
+    "test": "mocha server/spec",
+    "dev": "nodemon server/basic-server.js"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
-    "request": "^2.70.0"
+    "request": "^2.70.0",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "underscore": "^1.9.1"
   }
 }
