@@ -12,7 +12,7 @@ this file and include it in basic-server.js so that it actually works.
 
 **************************************************************/
 var fs = require('fs');
-var url = require('url');
+// var url = require('url');
 var requestHandler = function(request, response) {
   // Request and Response come from node's http module.
   //
@@ -67,6 +67,8 @@ var requestHandler = function(request, response) {
         response.writeHead(201, headers);
         response.end('{"success" : "Updated Successfully", "status" : 201}');
       })
+    } else if (request.method === 'OPTIONS') {
+      response.end();
     }
   } else {
     response.writeHead(404);
